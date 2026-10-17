@@ -25,7 +25,6 @@ jobs:
     - name: Build Debug APK
       run: gradle assembleDebug || ./gradlew assembleDebug
 
-    # Вот здесь мы говорим GitHub: "ищи APK во всех папках"
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
