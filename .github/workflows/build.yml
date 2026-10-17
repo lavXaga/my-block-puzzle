@@ -19,7 +19,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # 👇 ИСПРАВЛЕННЫЙ ШАГ
     - name: Setup Android SDK
       uses: android-actions/setup-android@v4
       with:
@@ -34,8 +33,20 @@ jobs:
         chmod +x gradlew
       working-directory: ./Block-PuzzleProject
 
+    # Этот шаг переименовывает файл игры, чтобы не было белого экрана
+    - name: Rename index to index.html
+      run: |
+        if [ -f assets/index ]; then
+          mv assets/index assets/index.html
+          echo "Файл index успешно переименован в index.html"
+        else
+          echo "Файл assets/index не найден, возможно он уже переименован."
+        fi
+      working-directory: ./Block-PuzzleProject/app/src/main
+
+    # Собираем проект с флагом --no-daemon и очисткой clean
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: ./gradlew clean assembleDebug --no-daemon --stacktrace
       working-directory: ./Block-PuzzleProject
 
     - name: Upload APK
@@ -43,6 +54,3 @@ jobs:
       with:
         name: my-app-debug
         path: '**/*.apk'
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug --info
-      working-directory: ./Block-PuzzleProject
