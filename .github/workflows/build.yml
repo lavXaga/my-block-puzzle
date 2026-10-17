@@ -19,15 +19,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Магия: скачиваем официальный wrapper для Gradle 7.6
-    - name: Download Gradle 7.6 Wrapper
+    
+    - name: Download Gradle Wrapper
       run: |
+        mkdir -p gradle/wrapper
         wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradlew -O gradlew
-        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.jar -O gradle-wrapper.jar
+        # Скачиваем jar-файл (ту самую "батарейку")
+        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+        # Скачиваем файл настроек (чтобы Gradle знал, какую версию качать)
+        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
         chmod +x gradlew
       working-directory: ./Block-PuzzleProject
 
-    # Собираем через скачанный gradlew
     - name: Build Debug APK
       run: ./gradlew assembleDebug
       working-directory: ./Block-PuzzleProject
