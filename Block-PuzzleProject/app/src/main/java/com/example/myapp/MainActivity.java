@@ -18,9 +18,11 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAllowFileAccess(true);
+        webSettings.setAllowContentAccess(true);
         
         webView.setWebViewClient(new WebViewClient());
         
+        // Пытаемся загрузить игру. Если файла нет, покажем текст ошибки прямо на экране.
         webView.loadUrl("file:///android_asset/index.html");
     }
 }
