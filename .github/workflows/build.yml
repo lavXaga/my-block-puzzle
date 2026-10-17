@@ -23,11 +23,9 @@ jobs:
     - name: Download Gradle Wrapper
       run: |
         mkdir -p gradle/wrapper
-        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradlew -O gradlew
-        # Скачиваем jar-файл (ту самую "батарейку")
-        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
-        # Скачиваем файл настроек (чтобы Gradle знал, какую версию качать)
-        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradlew -O gradlew
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
         chmod +x gradlew
       working-directory: ./Block-PuzzleProject
 
