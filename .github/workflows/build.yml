@@ -43,3 +43,6 @@ jobs:
       with:
         name: my-app-debug
         path: '**/*.apk'
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --info
+      working-directory: ./Block-PuzzleProject
