@@ -19,7 +19,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # 👇 НОВЫЙ ШАГ: Устанавливаем Android SDK на сервер GitHub
+    
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
@@ -32,7 +32,6 @@ jobs:
         chmod +x gradlew
       working-directory: ./Block-PuzzleProject
 
-    # 👇 Добавляем флаг для более подробного вывода ошибок, если что-то пойдет не так
     - name: Build Debug APK
       run: ./gradlew assembleDebug --stacktrace
       working-directory: ./Block-PuzzleProject
