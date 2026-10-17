@@ -1,32 +1,28 @@
 package com.example.myapp;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         
-        WebView webView = findViewById(R.id.webView);
-        WebSettings webSettings = webView.getSettings();
+        // Создаем WebView программно, без файлов разметки (это исключает ошибки)
+        WebView webView = new WebView(this);
+        setContentView(webView);
 
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setBuiltInZoomControls(false);
-        webSettings.setAllowFileAccessFromFileURLs(false);
+        webSettings.setAllowFileAccess(true);
         
-        if (true) {
-            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        } else {
-            webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        }
-
         webView.setWebViewClient(new WebViewClient());
+        
+        // Загружаем игру
         webView.loadUrl("file:///android_asset/index.html");
     }
 }
