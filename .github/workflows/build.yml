@@ -19,12 +19,17 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+    # Магия: скачиваем официальный wrapper для Gradle 7.6
+    - name: Download Gradle 7.6 Wrapper
+      run: |
+        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradlew -O gradlew
+        wget https://raw.githubusercontent.com/gradle/gradle/v7.6.0/gradle/wrapper/gradle-wrapper.jar -O gradle-wrapper.jar
+        chmod +x gradlew
+      working-directory: ./Block-PuzzleProject
 
-    # Собираем через системный gradle, так как файла gradlew нет
+    # Собираем через скачанный gradlew
     - name: Build Debug APK
-      run: gradle assembleDebug
+      run: ./gradlew assembleDebug
       working-directory: ./Block-PuzzleProject
 
     - name: Upload APK
