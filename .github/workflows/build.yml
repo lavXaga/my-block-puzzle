@@ -27,13 +27,12 @@ jobs:
     - name: Download Gradle Wrapper
       run: |
         mkdir -p gradle/wrapper
-        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradlew -O gradlew
-        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
-        wget https://raw.githubusercontent.com/gradle/gradle/v8.0.2/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.2/gradlew -O gradlew
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.2/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+        wget https://raw.githubusercontent.com/gradle/gradle/v8.2/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
         chmod +x gradlew
       working-directory: ./Block-PuzzleProject
 
-    # Этот шаг переименовывает файл игры, чтобы не было белого экрана
     - name: Rename index to index.html
       run: |
         if [ -f assets/index ]; then
@@ -44,7 +43,6 @@ jobs:
         fi
       working-directory: ./Block-PuzzleProject/app/src/main
 
-    # Собираем проект с флагом --no-daemon и очисткой clean
     - name: Build Debug APK
       run: ./gradlew clean assembleDebug --no-daemon --stacktrace
       working-directory: ./Block-PuzzleProject
