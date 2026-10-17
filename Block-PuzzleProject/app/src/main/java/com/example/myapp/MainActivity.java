@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // Создаем WebView программно, без файлов разметки (это исключает ошибки)
         WebView webView = new WebView(this);
         setContentView(webView);
 
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         
         webView.setWebViewClient(new WebViewClient());
         
-        // Загружаем игру
         webView.loadUrl("file:///android_asset/index.html");
     }
 }
